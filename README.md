@@ -3,10 +3,10 @@ Este projeto é um organizador de estudos online que foi desenvolvido para auxil
 
 Recursos:
 
-Adição de tarefas personalizáveis.
-Marcação de tarefas como concluídas com um simples clique.
-Temporizador ajustável para controlar o tempo de estudo.
-Capacidade de editar o tempo do temporizador.
-Design intuitivo e agradável ao usuário.
-Alarme sonoro para sinalizar o término do tempo de estudo.
+  Adição de tarefas personalizáveis.
+  Marcação de tarefas como concluídas com um simples clique.
+  Temporizador ajustável para controlar o tempo de estudo.
+  Capacidade de editar o tempo do temporizador.
+  Design intuitivo e agradável ao usuário.
+  Alarme sonoro para sinalizar o término do tempo de estudo.
 

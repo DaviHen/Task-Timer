@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="images/books-svgrepo-com.svg" type="image/x-icon">
+
+    <link rel="stylesheet" href="style.css">
+    <title>Lista de estudos</title>
+</head>
+<body>
+    <div class="container">
+        <div class="studyList">
+            <h1 class="pageTitle">Organize seus estudos</h1>
+            
+            <label for="addItemInput" class="itemSectionLabel">Adicione os itens da lista:</label>
+            <div class="addItemSection">
+                <input type="text" name="addItemInput" id="addItemInput" placeholder="Ex: Estudar sobre Arrays">
+                <button id="addItem">Adicionar item</button>
+            </div>
+            
+            <div class="ulListContainer">
+                <ul class="ulList">
+                    <!-- Itens serão adicionados por dom -->
+                </ul>
+            </div>
+            
+        </div>
+        
+        <div class="timerContainer">
+
+            <audio id="alarmAudio">
+                <source src="sounds/proud.mp3" type="audio/mp3">
+            </audio>
+
+            <div class="timerWrapper">
+                <span class="timerTitle">Temporizador</span>
+                <div class="timerDisplay">00:00:00</div>
+                <div id="progressBar"></div>
+            </div>
+            
+            <div class="timerBtnsHolder">
+                <button id="pausePlayBtn"><img src="images/play-pause-svgrepo-com.svg" title="Iniciar / Pausar"></button>
+                <button id="restartBtn"><img src="images/restart-svgrepo-com.svg" title="Reiniciar"></button>
+                <button id="editTimerBtn"><img src="images/edit-2-svgrepo-com.svg" title="Editar tempo"></button>
+            </div>
+            
+            <div class="timerEditorBgBlur"></div>
+
+            <div id="timerEditor">
+                <button class="closeTimerEditor"><i class="fa-solid fa-x"></i></button>
+                <p class="timerEditorInfo">Quanto tempo de estudo?</p>
+                <div class="timerEditorInputsHolder">
+                    <input 
+                    type="number" 
+                    id="hoursInput" 
+                    placeholder="00" 
+                    min="0" 
+                    max="24" 
+                    maxlength="2"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    >
+                    <label for="minutesInput" class="itemSectionLabel">:</label>
+                    <input 
+                    type="number" 
+                    id="minutesInput" 
+                    placeholder="00" 
+                    min="0" 
+                    max="59" 
+                    maxlength="2"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    >
+                    <label for="secondsInput" class="itemSectionLabel">:</label>
+                    <input 
+                    type="number" 
+                    id="secondsInput" 
+                    placeholder="00" 
+                    min="0" 
+                    max="59" 
+                    maxlength="2"
+                    oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                    >
+                </div>
+                <button id="finishEditingTimer">Selecionar horário</button>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <script src="script.js"></script>
+</body>
+</html>

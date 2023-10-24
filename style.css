@@ -1,0 +1,346 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+:root{
+    --Platinum: #DCDCDD;
+    --FrenchGray: #C5C3C6;
+    --OuterSpace: #46494C;
+    --PayneGray: #4c5c68;
+    --BlueMunsell: #4392F1;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+}
+
+
+/* Title */
+
+.pageTitle{
+    font-weight: normal;
+    margin-bottom: 20px;
+}
+
+/* List Section */
+
+.studyList{
+    background-color: var(--Platinum);
+    color: var(--OuterSpace);
+    padding: 10px;
+    height: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex: 1;
+    max-width: 70%; /* Defina uma largura máxima para a studyList */
+}
+
+.addItemSection{
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.itemSectionLabel{
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+#addItemInput{
+    width: 80%;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 5px;
+    border: none;
+    outline: none;
+}
+
+#addItemInput:focus{
+    box-shadow: 0px 0px 5px black;
+}
+
+#addItem{
+    background-color: var(--BlueMunsell);
+    color: #fff;
+    font-size: 20px;
+    padding: 5px;
+    border: none;
+    border-radius: 8px;
+    width: 20%;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: box-shadow .2s ease-in-out;
+}
+
+#addItem:hover{
+    box-shadow: 0px 0px 5px black;
+}
+
+.ulListContainer{
+    max-height: 80vh; 
+    overflow-y: auto; 
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+}
+
+.ulList{
+    background-color: var(--PayneGray);
+    color: var(--Platinum);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.liItems{
+    font-size: 20px;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: relative;
+    user-select: none;
+}
+
+/* Estilizando o checkbox */
+
+.liItems input[type="checkbox"] {
+    width: 20px; 
+    height: 20px;
+}
+
+.liItems input[type="checkbox"]:checked + label {
+    color: var(--BlueMunsell);
+    text-decoration: line-through;
+}
+
+.liItems #removeListItemBtn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 20px;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+}
+
+.liItems #removeListItemBtn:hover{
+    color: #ff6666;
+    text-shadow: 0px 0px 5px black;
+    transform: scale(1.3);
+}
+
+/* Timer Section */
+
+.timerContainer{
+    background-color: var(--PayneGray);
+    color: #fff;
+    width: 30%;
+    position: fixed;
+    right: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    box-shadow: 0px -5px 10px black;
+    user-select: none;
+}
+
+.timerWrapper{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.timerTitle{
+    font-size: 30px;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    position: absolute;
+    width: 100%;
+}
+
+.timerDisplay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 40px;
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    text-shadow: 0px 0px 5px black;
+}
+
+
+.timerBtnsHolder button{
+    max-height: 50px;
+    max-width: 50px;
+    padding: 5px;
+    border-radius: 8px;
+    border: none;
+    background-color: var(--BlueMunsell);
+    cursor: pointer;
+    margin: 0 10px;
+    transition: background-color .2s;
+    box-shadow: 0px 0px 5px black;
+}
+
+.timerBtnsHolder button:hover{
+    background-color: #2a5b97;
+}
+
+.timerBtnsHolder button img{
+    width: 100%;
+    height: 100%;
+}
+
+/* Timer Editor */
+
+#timerEditor {
+    background-color: var(--OuterSpace);
+    box-shadow: 0px 0px 5px black;
+    position: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 30rem;
+    min-height: 30rem;
+    border-radius: 8px;
+    padding: 10px;
+    z-index: 999;
+    gap: 20px;
+    user-select: none;
+    display: flex;
+    /* Display none */
+    display: none;
+}
+
+.closeTimerEditor{
+    border: none;
+    color: white;
+    background: none;
+    font-size: 25px;
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    cursor: pointer;
+    transition: .2s ease-in-out;
+
+}
+
+.closeTimerEditor:hover{
+    color: #ff6666;
+    text-shadow: 0px 0px 5px black;
+}
+
+.timerEditorInfo{
+    font-size: 20px;
+}
+
+.timerEditorInputsHolder{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.timerEditorInputsHolder input[type="number"]{
+    width: 46px;
+    font-size: 20px;
+    border-radius: 8px;
+    padding: 5px;
+    border: none;
+    outline: none;
+    text-align: center;
+}
+
+#finishEditingTimer{
+    background-color: var(--BlueMunsell);
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 20px;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+
+#finishEditingTimer:hover{
+    background-color: #2a5b97;
+}
+
+
+/* Remover setas type number */
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Background com blur */
+.timerEditorBgBlur {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1;
+
+    /* Display none */
+    display: none;
+}
+
+/* _______________ */
+
+#progressBar{
+    background-color: var(--BlueMunsell);
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: width 1s;
+}

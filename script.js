@@ -10,7 +10,49 @@ addItemOnListInput.addEventListener("keydown", function(e){
     }
 });
 
+let timerTimeOut;
+let progressBar = document.getElementById("progressBar");
+
 let uniqueId = 0;
+
+// Timer
+
+let timerDisplay = document.getElementsByClassName("timerDisplay")[0];
+
+// Start/Pause, Restart and Edit Buttons
+const startPausetimerBtn = document.getElementById("pausePlayBtn");
+const restartTimerBtn = document.getElementById("restartBtn");
+const editTimerBtn = document.getElementById("editTimerBtn");
+const playPauseImg = document.getElementById("playPauseImg");
+
+startPausetimerBtn.addEventListener("click", startPauseTimer);
+restartTimerBtn.addEventListener("click", restartTimer);
+editTimerBtn.addEventListener("click", editTimer);
+
+// Items that will show up when editTimerBtn is pressed
+
+const timerEditor = document.getElementById("timerEditor");
+const timerEditorBgBlur = document.getElementsByClassName("timerEditorBgBlur")[0];
+
+// Close editor
+const closeTimerEditorBtn = document.getElementsByClassName("closeTimerEditor")[0];
+closeTimerEditorBtn.addEventListener("click", closeTimerEditor);
+
+// Finish Editing
+const finishEditingTimerBtn = document.getElementById("finishEditingTimer");
+finishEditingTimerBtn.addEventListener("click", setUpTimer);
+
+
+// PopUp button
+const popupMessage = document.getElementById("popupMessage");
+const popupOkButton = document.getElementById("popupOkButton");
+popupOkButton.addEventListener("click", closePopup);
+
+
+let timerRunning = false;
+
+let totalSeconds;
+
 
 function addItemOnList(){
     let listInputValue = addItemOnListInput?.value;
@@ -67,51 +109,17 @@ function deleteItem(event){
     liItem.remove()
 }
 
-// Timer
-
-
-let timerDisplay = document.getElementsByClassName("timerDisplay")[0];
-
-// Start/Pause, Restart and Edit Buttons
-const startPausetimerBtn = document.getElementById("pausePlayBtn");
-const restartTimerBtn = document.getElementById("restartBtn");
-const editTimerBtn = document.getElementById("editTimerBtn");
-
-startPausetimerBtn.addEventListener("click", startPauseTimer);
-restartTimerBtn.addEventListener("click", restartTimer);
-editTimerBtn.addEventListener("click", editTimer);
-
-// Items that will show up when editTimerBtn is pressed
-
-const timerEditor = document.getElementById("timerEditor");
-const timerEditorBgBlur = document.getElementsByClassName("timerEditorBgBlur")[0];
-
-// Close editor
-const closeTimerEditorBtn = document.getElementsByClassName("closeTimerEditor")[0];
-closeTimerEditorBtn.addEventListener("click", closeTimerEditor);
-
-// Finish Editing
-const finishEditingTimerBtn = document.getElementById("finishEditingTimer");
-finishEditingTimerBtn.addEventListener("click", setUpTimer);
-
-
-let timerRunning = false;
-
 function startPauseTimer(){
     if(!timerRunning){
         timerRunning = true;
         startCountDown();
+
     } else {
         timerRunning = false;
         clearTimeout(timerTimeOut);
     }
-
-    console.log(totalSeconds)
 }
 
-
-let timerTimeOut;
-let progressBar = document.getElementById("progressBar");
 
 function startCountDown() {
     let timeArray = timerDisplay.textContent.split(":");
@@ -125,15 +133,17 @@ function startCountDown() {
         clearTimeout(timerTimeOut);
         timerDisplay.innerHTML = "00:00:00";
 
+        progressBar.style.width = "100%";
+        popupMessage.style.display = "block";
+
         playAlarmSound();
 
-        alert("O tempo acabou!");
         return;
     }
 
     let progressBarValue = (totalSeconds - (hours * 3600 + minutes * 60 + seconds));
     let perc = Math.round( ( progressBarValue / totalSeconds) * 100);
-    perc += 10;
+    perc+= 5 // Apenas um ajuste visual, para um melhor entendimento da porcentagem.
     progressBar.style.width = `${perc > 100 ? perc = 100 : perc}%`;
 
     // Decrementar um segundo
@@ -194,13 +204,16 @@ function editTimer(){
     });
 }
 
-let totalSeconds;
-
 function setUpTimer(){
-    // Utilizar operador de coalescência nula.
+    // Utilizar operador de coalescência nula. Oxi n tá funcionando? :\
     let studyHours = document.getElementById("hoursInput")?.value ?? "00";
     let studyMinutes = document.getElementById("minutesInput")?.value ?? "00";
     let studySeconds = document.getElementById("secondsInput")?.value ?? "00";
+
+    // So pra ter certeza que vai funcionar
+    studyHours.length == 0 ? studyHours = "00" : studyHours
+    studyMinutes.length == 0 ? studyMinutes = "00" : studyMinutes
+    studySeconds.length == 0 ? studySeconds = "00" : studySeconds
     
     // Dar uma olhada se pode ser simplificado o código.
     timerDisplay.innerHTML = `${( (studyHours < 10 && studyHours >= 0) && studyHours.length < 2 ? "0" + studyHours : studyHours)}:${( (studyMinutes < 10 && studyMinutes >= 0) && studyMinutes.length < 2 ? "0" + studyMinutes: studyMinutes)}:${( (studySeconds < 10 && studySeconds >= 0) && studySeconds.length < 2 ? "0" + studySeconds: studySeconds)}`;
@@ -216,4 +229,9 @@ function setUpTimer(){
 function closeTimerEditor(){
     timerEditor.style.display = "none";
     timerEditorBgBlur.style.display = "none";
+}
+
+function closePopup() {
+    // Ocultar a mensagem pop-up ao clicar no botão "OK"
+    popupMessage.style.display = "none";
 }

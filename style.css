@@ -131,6 +131,12 @@ html, body {
     height: 20px;
 }
 
+.liItems label{
+    word-wrap: break-word;
+    max-width: 92%;
+    padding: 0 10px;
+}
+
 .liItems input[type="checkbox"]:checked + label {
     color: var(--BlueMunsell);
     text-decoration: line-through;
@@ -139,7 +145,8 @@ html, body {
 .liItems #removeListItemBtn {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
     font-size: 20px;
     background: none;
     border: none;
@@ -344,3 +351,130 @@ input[type=number] {
     z-index: -1;
     transition: width 1s;
 }
+
+/* PopUp */
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--PayneGray); /* Cor de fundo do estilo da sua página */
+    color: #fff; /* Cor do texto */
+    border: 1px solid #ccc;
+    padding: 30px 50px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.popup p {
+    font-size: 20px;
+    margin: 20px 0;
+    /* Outros estilos de texto */
+}
+
+.popup button#popupOkButton {
+    background-color: var(--BlueMunsell); /* Cor de fundo do estilo da sua página */
+    color: #fff; /* Cor do texto do botão */
+    border: none;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color .2s;
+}
+
+.popup button#popupOkButton:hover {
+    background-color: #2a5b97; /* Cor de fundo quando o botão é hover */
+}
+
+@media screen and (max-width: 900px){
+    .studyList{
+        max-width: 60%;
+    }
+
+    .timerContainer{
+        width: 40%;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: block;
+        height: 100%;
+    }
+
+    .studyList, .timerContainer {
+        width: 100%;
+        max-height: 100%;
+    }
+
+    .studyList{
+        height: auto;
+        min-height: 50%;
+        height: 70%;
+        flex: 1;
+        max-width: 100%; /* Defina uma largura máxima para a studyList */
+        align-items: center;
+    }
+
+    .addItemSection{
+        flex-wrap: wrap;
+    }
+
+    #addItemInput{
+        width: 100%;
+        text-align: center;
+    }
+
+    #addItem{
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .ulListContainer{
+        width: 100%;
+        margin-top: -15px;
+    }
+
+    .ulList{
+        width: 100%;
+        margin: 0;
+    }
+
+    .timerContainer{
+        width: 100%;
+        padding: 20px 0;
+        height: 30%;
+        gap: 20px;
+        box-shadow: none;
+    }
+
+    .timerWrapper{
+        padding: 0;
+        margin: -10px;
+    }
+
+    .timerDisplay{
+        margin: 0;
+    }
+
+    .timerTitle{
+        display: none;
+    }
+
+    #popupMessage{
+        width: 80%;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+
+
